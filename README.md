@@ -29,10 +29,59 @@ This project demonstrates the following Python concepts and libraries:
      - If a contact number is not exactly 11 digits long, an error message displays: *"Emergency contact must be exactly 11 digits long."*
    - These checks prevent incomplete or invalid data from being processed.
 
-4. 
 ---
 
-## III. Explanation of Functions
+## III. Sustainable Development Goal (SDG) Integration
+### SDG 11: Sustainable Cities and Communities
+The PASPAS system supports SDG 11, which aims to create sustainable and safe cities. It specifically helps improve disaster response and community resilience in the following ways:
+
+1. Improving Emergency Response
+
+ - PASPAS enhances emergency response times by making it easier to report emergencies. When disasters occur, every second counts. PASPAS provides a straightforward interface that helps users select the type of emergency and enter their name, location, and details. This structured approach captures essential information quickly, ensuring that help is dispatched promptly. By automating the reporting process, the system reduces delays and errors that can happen with manual calls.
+     
+2. Enhancing Disaster Resilience
+
+ - PASPAS helps communities prepare for disasters, whether from nature or human causes. It provides specific reminders on how to act during emergencies. For example, it advises users to find higher ground during floods or to evacuate safely in case of a fire. This readiness helps save lives and lessen the impact of disasters by ensuring that help arrives quickly.
+     
+
+3. Promoting Inclusivity
+
+ - A major challenge in emergencies is making sure everyone can access help, regardless of their background or tech skills. PASPAS is designed to be simple and user-friendly, allowing anyone to navigate it easily. This inclusive approach ensures that more people can request assistance during critical times, particularly in areas where emergency services might be harder to reach. By breaking down barriers, PASPAS empowers individuals to act quickly when they need help.
+---
+
+## IV. Instructions for Running the Program
+### Prerequisites:
+- **Python 3.x** installed on your system.
+- Required Python libraries (`tkinter`, `ttk` - these come pre-installed with Python).
+- Image files for icons and buttons located in `C:\Users\FINAL PROJECT IN ACP\images`.
+
+### Steps to Run:
+1. Clone or download the project files.
+2. Ensure the image assets (`logo.png` and `paspas.png`) are in the specified directory.
+3. Run the Python script:
+   ```bash
+   python Emergency_Response_System.py
+4. Users Interacting with the GUI
+  - Launch the program.
+  - Select an Emergency type:
+     - Users can click on buttons like "Fire," "Flood," "Medical," "Crime," or "Earthquake" to indicate the type of emergency.
+  - Enter user details:
+     - After selecting the emergency type, a form appears asking for:
+         - Name (required)
+         - Location (required)
+         - Emergency Contact (required for "Medical" or "Crime" emergencies)
+         - Additional Information (optional)
+  - Validation of Inputs:
+     - If any required fields are missing, users will see warning messages prompting them to complete the form.
+  - Submit the Request:
+     - Clicking "Submit Request" validates the details and initiates the emergency assistance process.
+     - A progress bar and tracking messages simulate real-time location tracking.
+  - Receive Confirmation:
+     - Users receive confirmation messages like "Location confirmed" and "Help is on the way!"
+  - View Emergency Reminders:
+     - Contextual reminders or tips related to the selected emergency type are shown to guide users on staying safe until help arrives.
+
+## Explanation of Functions
 Each `def` used in the code plays a specific role in the system. Here's a breakdown:
 
 ### 1. `__init__(self, root)`
@@ -75,53 +124,3 @@ Each `def` used in the code plays a specific role in the system. Here's a breakd
 - Shows emergency-specific advice or reminders based on the selected type.
 
 ---
-
-## IV. Sustainable Development Goal (SDG) Integration
-### SDG 11: Sustainable Cities and Communities
-The PASPAS system supports SDG 11, which aims to create sustainable and safe cities. It specifically helps improve disaster response and community resilience in the following ways:
-
-1. Improving Emergency Response
-
- - PASPAS enhances emergency response times by making it easier to report emergencies. When disasters occur, every second counts. PASPAS provides a straightforward interface that helps users select the type of emergency and enter their name, location, and details. This structured approach captures essential information quickly, ensuring that help is dispatched promptly. By automating the reporting process, the system reduces delays and errors that can happen with manual calls.
-     
-2. Enhancing Disaster Resilience
-
- - PASPAS helps communities prepare for disasters, whether from nature or human causes. It provides specific reminders on how to act during emergencies. For example, it advises users to find higher ground during floods or to evacuate safely in case of a fire. This readiness helps save lives and lessen the impact of disasters by ensuring that help arrives quickly.
-     
-
-3. Promoting Inclusivity
-
- - A major challenge in emergencies is making sure everyone can access help, regardless of their background or tech skills. PASPAS is designed to be simple and user-friendly, allowing anyone to navigate it easily. This inclusive approach ensures that more people can request assistance during critical times, particularly in areas where emergency services might be harder to reach. By breaking down barriers, PASPAS empowers individuals to act quickly when they need help.
----
-
-## V. Instructions for Running the Program
-### Prerequisites:
-- **Python 3.x** installed on your system.
-- Required Python libraries (`tkinter`, `ttk` - these come pre-installed with Python).
-- Image files for icons and buttons located in `C:\Users\FINAL PROJECT IN ACP\images`.
-
-### Steps to Run:
-1. Clone or download the project files.
-2. Ensure the image assets (`logo.png` and `paspas.png`) are in the specified directory.
-3. Run the Python script:
-   ```bash
-   python Emergency_Response_System.py
-4. Users Interacting with the GUI
-  - Launch the program.
-  - Select an Emergency type:
-     - Users can click on buttons like "Fire," "Flood," "Medical," "Crime," or "Earthquake" to indicate the type of emergency.
-  - Enter user details:
-     - After selecting the emergency type, a form appears asking for:
-         - Name (required)
-         - Location (required)
-         - Emergency Contact (required for "Medical" or "Crime" emergencies)
-         - Additional Information (optional)
-  - Validation of Inputs:
-     - If any required fields are missing, users will see warning messages prompting them to complete the form.
-  - Submit the Request:
-     - Clicking "Submit Request" validates the details and initiates the emergency assistance process.
-     - A progress bar and tracking messages simulate real-time location tracking.
-  - Receive Confirmation:
-     - Users receive confirmation messages like "Location confirmed" and "Help is on the way!"
-  - View Emergency Reminders:
-     - Contextual reminders or tips related to the selected emergency type are shown to guide users on staying safe until help arrives.
