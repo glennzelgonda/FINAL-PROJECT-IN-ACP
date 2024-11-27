@@ -57,11 +57,24 @@ The PASPAS system supports SDG 11, which aims to create sustainable and safe cit
 
 ### Steps to Run:
 1. Clone or download the project files.
-2. Ensure the image assets (`logo.png` and `paspas.png`) are in the specified directory.
+2. Ensure the image assets (`logo.png`, `paspas.png`, and  `red.png` ) are in the specified directory.
 3. Run the Python script:
    ```bash
-   python Emergency_Response_System.py
-4. Users Interacting with the GUI
+   python main.py
+4. Folder Structure
+/project-folder
+│
+├── /images
+│   ├── logo.png              # Application icon
+│   ├── paspas.png            # Logo for the application
+│   ├── red.png               # Button images for emergency types
+│
+├── database.py               # Database setup and interaction
+├── emergency_response.py     # Main application logic
+├── main.py                   # Entry point of the program
+├── README.md                 # Documentation (this file)
+
+5. Users Interacting with the GUI
   - Launch the program.
   - Select an Emergency type:
      - Users can click on buttons like "Fire," "Flood," "Medical," "Crime," or "Earthquake" to indicate the type of emergency.
@@ -78,14 +91,17 @@ The PASPAS system supports SDG 11, which aims to create sustainable and safe cit
      - A progress bar and tracking messages simulate real-time location tracking.
   - Receive Confirmation:
      - Users receive confirmation messages like "Location confirmed" and "Help is on the way!"
-  - View Emergency Reminders:
+  - Emergency Reminders:
      - Contextual reminders or tips related to the selected emergency type are shown to guide users on staying safe until help arrives.
+  - View History
+     - This button allows users to see a detailed record of past emergency reports. It opens a new window displaying the user's name, type of emergency, additional details, location, and the time the emergency was reported.
 
-## Explanation of Functions
+## Explanation of Functions by their files
+*emergency response.py*
 Each `def` used in the code plays a specific role in the system. Here's a breakdown:
 
 ### 1. `__init__(self, root)`
-- Initializes the main application window, sets up the GUI layout, and loads images/icons.
+- Initializes the main application window, sets up the GUI layout, loads images/icons, and sets up connections, including creating an instance of the Database class for handling database operations.
 
 ### 2. `create_emergency_buttons(self, frame)`
 - Dynamically creates emergency buttons (Fire, Flood, etc.) and links them to their respective handlers.
@@ -122,5 +138,32 @@ Each `def` used in the code plays a specific role in the system. Here's a breakd
 
 ### 10. `display_emergency_advice(self)`
 - Shows emergency-specific advice or reminders based on the selected type.
+
+### 11. `view_history(self)`
+- The view_history method creates a new window displaying a table of emergency history records. It retrieves data from the database, formats it into a table with six columns (user ID, name, emergency type, details, location, and timestamp)
+
+**database.py**
+- This file defines a Database class responsible for managing the SQLite database used in Emergency Response System. It provides methods to set up the database tables, save user and emergency data, fetch emergency history, and close the connection to the database. Here's a brief description of each method:
+
+### 1. __init__ Method:
+- Initializes the database connection and cursor, and calls the setup_tables method to create the necessary tables if they don't already exist.
+
+### 2. setup_tables Method:
+- Creates two tables, Users and Emergencies, if they don't exist. The Users table stores user information, while the Emergencies table stores emergency details linked to the users.
+
+### 3. save_user Method:
+- Inserts a new user's information (name, contact, location, emergency type) into the Users table and returns the ID of the newly inserted user.
+
+### 4. save_emergency Method:
+- Inserts a new emergency record (emergency type, details, user ID) into the Emergencies table.
+
+### 5. close Method:
+- Closes the database connection when no longer needed.
+
+### 6. fetch_emergency_history Method:
+-  Fetches a complete list of emergency history by joining the Users and Emergencies tables. It retrieves the user's ID, name, emergency type, details, location, and the time the emergency was reported, sorted by the most recent reports.
+
+**main.py**
+- This file launches the Emergency Assistance System, acting as the starting point for the program. It creates the main window, initializes the GUI, and runs the application event loop.
 
 ---
