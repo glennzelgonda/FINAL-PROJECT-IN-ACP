@@ -1,3 +1,4 @@
+
 <div align="center"> <img src="https://github.com/user-attachments/assets/e85d75d2-7430-45a7-a041-1ac6f31f06fd"> <h1>🚨  🚨 🚨</h1> </div>
 
 
@@ -64,7 +65,7 @@ The PASPAS system supports SDG 11, which aims to create sustainable and safe cit
    python main.py
 4. Folder Structure
 ``` python
-/project-folder  
+/src/paspas 
 │  
 ├── /images  
 │   ├── logo.png              # Application icon  
