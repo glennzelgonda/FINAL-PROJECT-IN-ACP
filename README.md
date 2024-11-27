@@ -1,4 +1,4 @@
-<div align="center"> <img src="https://github.com/user-attachments/assets/e85d75d2-7430-45a7-a041-1ac6f31f06fd"> <h1>🚨  🚨🚨</h1> </div>
+<div align="center"> <img src="https://github.com/user-attachments/assets/e85d75d2-7430-45a7-a041-1ac6f31f06fd"> <h1>🚨  🚨 🚨</h1> </div>
 
 
 ## I. Project Overview
@@ -10,7 +10,6 @@ PASPAS goes beyond just reporting emergencies; ut stimulates response procedures
 
 ---
 
-<div align="center"> 
 ## II. Python Concepts, Libraries, and Features
 This project demonstrates the following Python concepts and libraries:
 
@@ -32,8 +31,7 @@ This project demonstrates the following Python concepts and libraries:
    - These checks prevent incomplete or invalid data from being processed.
 
 ---
-
-<div align="center"> 
+ 
 ## III. Sustainable Development Goal (SDG) Integration
 ### SDG 11: Sustainable Cities and Communities
 The PASPAS system supports SDG 11, which aims to create sustainable and safe cities. It specifically helps improve disaster response and community resilience in the following ways:
@@ -52,7 +50,6 @@ The PASPAS system supports SDG 11, which aims to create sustainable and safe cit
  - A major challenge in emergencies is making sure everyone can access help, regardless of their background or tech skills. PASPAS is designed to be simple and user-friendly, allowing anyone to navigate it easily. This inclusive approach ensures that more people can request assistance during critical times, particularly in areas where emergency services might be harder to reach. By breaking down barriers, PASPAS empowers individuals to act quickly when they need help.
 ---
 
-<div align="center"> 
 ## IV. Instructions for Running the Program
 ### Prerequisites:
 - **Python 3.x** installed on your system.
@@ -66,17 +63,20 @@ The PASPAS system supports SDG 11, which aims to create sustainable and safe cit
    ```bash
    python main.py
 4. Folder Structure
-/project-folder
-│
-├── /images
-│   ├── logo.png              # Application icon
-│   ├── paspas.png            # Logo for the application
-│   ├── red.png               # Button images for emergency types
-│
-├── database.py               # Database setup and interaction
-├── emergency_response.py     # Main application logic
-├── main.py                   # Entry point of the program
-├── README.md                 # Documentation (this file)
+``` python
+/project-folder  
+│  
+├── /images  
+│   ├── logo.png              # Application icon  
+│   ├── paspas.png            # Application logo  
+│   ├── red.png               # Emergency type button images  
+│  
+├── database.py               # Database setup and interaction  
+├── emergency_response.py     # Main application logic  
+├── main.py                   # Entry point of the program  
+├── README.md                 # Documentation 
+``` 
+
 
 5. Users Interacting with the GUI
   - Launch the program.
