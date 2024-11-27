@@ -1,5 +1,9 @@
-![paspas1](https://github.com/user-attachments/assets/e85d75d2-7430-45a7-a041-1ac6f31f06fd)
+<div align="center"> <img src="https://github.com/user-attachments/assets/e85d75d2-7430-45a7-a041-1ac6f31f06fd" alt="PASPAS Logo" width="200"> <h1>PASPAS: Emergency Response System</h1> </div>
 
+
+<div align="center"> 🚨🚨🚨
+
+<div align="center"> 
 ## I. Project Overview
 PASPAS: Emergency Response System is a Python-based application, specifically designed to provide crucial support to individuals amid emergencies. This system connects users to important resources with remarkable speed and efficiency. It empowers users to report a wide array of emergencies, including natural disasters like floods and earthquakes, urgent incidents, fiery blazes, and criminal activities. When users report an emergency, they are promted to provide essential details, such as their name, exact location, and comprehensive description of the situation at hand.
 
@@ -9,6 +13,7 @@ PASPAS goes beyond just reporting emergencies; ut stimulates response procedures
 
 ---
 
+<div align="center"> 
 ## II. Python Concepts, Libraries, and Features
 This project demonstrates the following Python concepts and libraries:
 
@@ -31,6 +36,7 @@ This project demonstrates the following Python concepts and libraries:
 
 ---
 
+<div align="center"> 
 ## III. Sustainable Development Goal (SDG) Integration
 ### SDG 11: Sustainable Cities and Communities
 The PASPAS system supports SDG 11, which aims to create sustainable and safe cities. It specifically helps improve disaster response and community resilience in the following ways:
@@ -49,6 +55,7 @@ The PASPAS system supports SDG 11, which aims to create sustainable and safe cit
  - A major challenge in emergencies is making sure everyone can access help, regardless of their background or tech skills. PASPAS is designed to be simple and user-friendly, allowing anyone to navigate it easily. This inclusive approach ensures that more people can request assistance during critical times, particularly in areas where emergency services might be harder to reach. By breaking down barriers, PASPAS empowers individuals to act quickly when they need help.
 ---
 
+<div align="center"> 
 ## IV. Instructions for Running the Program
 ### Prerequisites:
 - **Python 3.x** installed on your system.
@@ -97,7 +104,7 @@ The PASPAS system supports SDG 11, which aims to create sustainable and safe cit
      - This button allows users to see a detailed record of past emergency reports. It opens a new window displaying the user's name, type of emergency, additional details, location, and the time the emergency was reported.
 
 ## Explanation of Functions by their files
-*emergency response.py*
+### *emergency response.py*
 Each `def` used in the code plays a specific role in the system. Here's a breakdown:
 
 ### 1. `__init__(self, root)`
@@ -142,7 +149,7 @@ Each `def` used in the code plays a specific role in the system. Here's a breakd
 ### 11. `view_history(self)`
 - The view_history method creates a new window displaying a table of emergency history records. It retrieves data from the database, formats it into a table with six columns (user ID, name, emergency type, details, location, and timestamp)
 
-**database.py**
+### **database.py**
 - This file defines a Database class responsible for managing the SQLite database used in Emergency Response System. It provides methods to set up the database tables, save user and emergency data, fetch emergency history, and close the connection to the database. Here's a brief description of each method:
 
 ### 1. __init__ Method:
@@ -163,7 +170,7 @@ Each `def` used in the code plays a specific role in the system. Here's a breakd
 ### 6. fetch_emergency_history Method:
 -  Fetches a complete list of emergency history by joining the Users and Emergencies tables. It retrieves the user's ID, name, emergency type, details, location, and the time the emergency was reported, sorted by the most recent reports.
 
-**main.py**
+### **main.py**
 - This file launches the Emergency Assistance System, acting as the starting point for the program. It creates the main window, initializes the GUI, and runs the application event loop.
 
 ---
