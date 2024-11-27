@@ -1,9 +1,6 @@
-<div align="center"> <img src="https://github.com/user-attachments/assets/e85d75d2-7430-45a7-a041-1ac6f31f06fd" alt="PASPAS Logo" width="200"> <h1>PASPAS: Emergency Response System</h1> </div>
+<div align="center"> <img src="https://github.com/user-attachments/assets/e85d75d2-7430-45a7-a041-1ac6f31f06fd"> <h1>🚨  🚨🚨</h1> </div>
 
 
-<div align="center"> 🚨🚨🚨
-
-<div align="center"> 
 ## I. Project Overview
 PASPAS: Emergency Response System is a Python-based application, specifically designed to provide crucial support to individuals amid emergencies. This system connects users to important resources with remarkable speed and efficiency. It empowers users to report a wide array of emergencies, including natural disasters like floods and earthquakes, urgent incidents, fiery blazes, and criminal activities. When users report an emergency, they are promted to provide essential details, such as their name, exact location, and comprehensive description of the situation at hand.
 
