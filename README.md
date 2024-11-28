@@ -13,22 +13,43 @@ PASPAS: Emergency Response System is a Python-based application, specifically de
 
 In today's world, especially in our country Philippines, we are experiencing severe calamities, disasters, and crimes or tragedies that cause panic and fear among people. PASPAS is built to address this pressing issue by offering quick assistance during such stressfull moments. This system is created to lessen the stress and confusion often associated with seeking help in crises, particularly for individuals who may be feling panicked or unsure about where to turn for assistance. It effectively addresses commmon challenge of not knowing which emergency hotline to dial, streamlining their path to receiving the help they need without unnecessary delays.
 
-PASPAS goes beyond just reporting emergencies; ut stimulates response procedures. This includes tarcking the user's location in real-time and confirming the rapid deployment of assistance to their location. With its intuitive and user-friendly indterface, along with a highly effective workflow, PASPAS aims to ensure that emergency reporting is accessible to everyone, thereby guaranteeing swift and reliable help during the most critical times.
+PASPAS goes beyond just reporting emergencies it stimulates response procedures. This includes tarcking the user's location in real-time and confirming the rapid deployment of assistance to their location. With its intuitive and user-friendly indterface, along with a highly effective workflow, PASPAS aims to ensure that emergency reporting is accessible to everyone, thereby guaranteeing swift and reliable help during the most critical times.
 
 ---
 
 ## II. Python Concepts, Libraries, and Features 🐍
-This project demonstrates the following Python concepts and libraries:
+In developing this PASPAS:Emergency Response System, several Python concepts and libraries were utilized to ensure efficient functionality and scalability, including:
 
-1. **GUI with Tkinter:**
-   - `Tkinter` is used to create a user-friendly graphical interface with buttons, labels, entry fields, and pop-ups.
-   - Icons and images enhance usability and provide an intuitive experience.
-   - Progress bars (`ttk.Progressbar`) simulate tracking.
+1. Paspas applies the four main principles of Object-Oriented Programming (OOP) effectively:
+- **Encalsuplation**
+  - This principle is used to bundle the data (attributes) and methods (functions) that operate on the data into a single unit (class). This allows better control over the data and restricts direct access.
+     - In this project, the EmergencyResponse class encapsulates all the functionalities and attributes of the system, such as emergency types, user information, and UI components.
+     - The methods like get_user_info(), confirm_details(), and send_alert() handle specific behaviors while keeping the data (emergency_type, name_entry, etc.) private to the class.
+     - The database interaction is abstracted through the Database class, ensuring the main application interacts with the database securely without exposing its internal logic.
 
-2. **Threading:**
-   - Used for location tracking to prevent the UI from freezing during background processes.
+- **Inheritance** 
+  - Inheritance allows a class to acquire properties and behaviors from another class.
+     - While this specific code doesn't use inheritance directly (e.g., child classes inheriting from parent classes), it leverages inheritance through the use of tkinter classes like Toplevel and Button. These tkinter components inherit functionality from base GUI classes and are extended with specific behaviors in this program.
 
-3. **Error Handling and Validation:**
+- **Polymorphism**
+  - Polymorphism allows objects to be treated as instances of their parent class or to override methods for specific behaviors.
+     - In this project, polymorphism is demonstrated in the handler methods (handle_fire(), handle_flood(), etc.), which all use the same get_user_info() method but pass different emergency_type values.
+     - The responders dictionary in show_location_confirmed() provides polymorphic behavior by dynamically choosing the response message based on the type of emergency.
+
+- **Abstraction**
+   - Abstraction focuses on hiding complex implementation details and exposing only the essential features.
+      - Complex operations like database interactions are abstracted into the Database class, so the main application doesn’t deal with low-level SQL queries. For example, methods like save_user() and fetch_emergency_history() abstract how data is saved or retrieved from the database.
+      - The progress-tracking mechanism in send_alert() uses abstraction to simplify the process of simulating progress with a progress bar.
+
+2. **GUI with tkinter**
+  - Tkinter is used for creating a dynamic and interactive graphical user interface.
+  - The interface includes emergency buttons, forms for user data input, and history viewing.
+  - Images and icons (PhotoImage) enhance user experience.
+
+3. **Threading**
+  - Used for location tracking to prevent the UI from freezing during background processes.
+
+4. **Error Handling and Validation**
    - Ensures that users provide complete and valid information before proceeding. For example:
      - If a user does not enter both of their **Name** and **Location**, a pop-up warning appears: *Please provide your name and location to assist you.*
      - If a user does not enter their **Name**, a pop-up warning appears: *"Please provide your name to assist you."*
@@ -36,6 +57,15 @@ This project demonstrates the following Python concepts and libraries:
      - If the **Emergency Contact** is left blank or contains non-numeric characters, the user is alerted with messages like: *"Emergency contact must contain only numbers."*
      - If a contact number is not exactly 11 digits long, an error message displays: *"Emergency contact must be exactly 11 digits long."*
    - These checks prevent incomplete or invalid data from being processed.
+
+5. **Database Integration *(sqlite3)***
+    - A database (Database class) stores user data and emergency history.
+    - Emergency history can be retrieved and displayed in a styled Treeview table. 
+
+6. **Use of Python libraries**
+    - ttk.Progressbar: For simulating progress during location tracking.
+    - messagebox: For user notifications and confirmations.
+    - Toplevel: For creating secondary windows like user input forms and history viewing.
 
 ---
  
@@ -109,6 +139,8 @@ The PASPAS system supports SDG 11, which aims to create sustainable and safe cit
   - View History
      - This button allows users to see a detailed record of past emergency reports. It opens a new window displaying the user's name, type of emergency, additional details, location, and the time the emergency was reported.
 
+---
+
 ## Explanation of Functions by their files
 ### *emergency response.py*
 Each `def` used in the code plays a specific role in the system. Here's a breakdown:
@@ -155,6 +187,8 @@ Each `def` used in the code plays a specific role in the system. Here's a breakd
 ### 11. `view_history(self)`
 - The view_history method creates a new window displaying a table of emergency history records. It retrieves data from the database, formats it into a table with six columns (user ID, name, emergency type, details, location, and timestamp)
 
+---
+
 ### **database.py**
 - This file defines a Database class responsible for managing the SQLite database used in Emergency Response System. It provides methods to set up the database tables, save user and emergency data, fetch emergency history, and close the connection to the database. Here's a brief description of each method:
 
@@ -176,7 +210,17 @@ Each `def` used in the code plays a specific role in the system. Here's a breakd
 ### 6. fetch_emergency_history Method:
 -  Fetches a complete list of emergency history by joining the Users and Emergencies tables. It retrieves the user's ID, name, emergency type, details, location, and the time the emergency was reported, sorted by the most recent reports.
 
+---
 ### **main.py**
 - This file launches the Emergency Assistance System, acting as the starting point for the program. It creates the main window, initializes the GUI, and runs the application event loop.
 
 ---
+
+**Future Enhancement**
+1. Implement real-time responder tracking via external APIs.
+2. Tracking the real-timr location of the user for accurate emergency tracking.
+3. Implement SMS or email notifications for the user's emergency contacts and responders with the user's details and location.
+4. Create a separate dashboard for emergency responders to view real-time data, prioritize cases, and communicate with users directly.
+
+
+<div>Paspas: Fast. Reliable. Life-Saving.</div>
