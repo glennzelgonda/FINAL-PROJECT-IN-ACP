@@ -216,7 +216,7 @@ Each `def` used in the code plays a specific role in the system. Here's a breakd
 
 ---
 
-**Future Enhancement**
+**Future Enhancement**✨
 1. Implement real-time responder tracking via external APIs.
 2. Tracking the real-timr location of the user for accurate emergency tracking.
 3. Implement SMS or email notifications for the user's emergency contacts and responders with the user's details and location.
@@ -226,5 +226,4 @@ Each `def` used in the code plays a specific role in the system. Here's a breakd
 <div align= "center"> 
 
 *Paspas: Fast. Reliable. Life-Saving.*🚨🚓🚑🚒
-
  </div>
