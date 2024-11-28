@@ -223,4 +223,8 @@ Each `def` used in the code plays a specific role in the system. Here's a breakd
 4. Create a separate dashboard for emergency responders to view real-time data, prioritize cases, and communicate with users directly.
 
 
-<div align= "center"> Paspas: Fast. Reliable. Life-Saving.🚨🚓🚑🚒</div>
+<div align= "center"> 
+
+## **Paspas: Fast. Reliable. Life-Saving.**🚨🚓🚑🚒
+
+ </div>
