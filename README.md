@@ -35,9 +35,8 @@ This project demonstrates the following Python concepts and libraries:
  
 ## III. Sustainable Development Goal (SDG) Integration
 <div align="center"> <img src="https://github.com/user-attachments/assets/f4300762-550e-430b-92f3-7d9981bc29e7"> 
-<div align="center"> 
 
-### SDG 11: Sustainable Cities and Communities 
+### SDG 11: Sustainable Cities and Communities </div>
 The PASPAS system supports SDG 11, which aims to create sustainable and safe cities. It specifically helps improve disaster response and community resilience in the following ways:
 
 1. Improving Emergency Response
