@@ -25,7 +25,7 @@ class EmergencyResponse:
         try:
             logo = PhotoImage(file=r'C:\Users\FINAL PROJECT IN ACP\images\paspas.png').subsample(5, 5)
             logo_label = Label(root, image=logo, background="#b4b9bf", bd=0)
-            logo_label.photo = logo  # Keep a reference to avoid garbage collection
+            logo_label.photo = logo
             logo_label.pack()
         except Exception as e:
             print(f"Logo not loaded: {e}")

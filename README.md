@@ -1,8 +1,12 @@
 
-<div align="center"> <img src="https://github.com/user-attachments/assets/e85d75d2-7430-45a7-a041-1ac6f31f06fd"> <h1>🚨 🚨 🚨</h1> </div>
+<div align="center"> <img src="https://github.com/user-attachments/assets/e85d75d2-7430-45a7-a041-1ac6f31f06fd">  
+
+**Gonda,Glennzel Emman S.**
+***IT-2104***
+<h1>🚨 🚨 🚨</h1> </div>
 
 
-## I. Project Overview
+## I. Project Overview 📚
 PASPAS: Emergency Response System is a Python-based application, specifically designed to provide crucial support to individuals amid emergencies. This system connects users to important resources with remarkable speed and efficiency. It empowers users to report a wide array of emergencies, including natural disasters like floods and earthquakes, urgent incidents, fiery blazes, and criminal activities. When users report an emergency, they are promted to provide essential details, such as their name, exact location, and comprehensive description of the situation at hand.
 
 In today's world, especially in our country Philippines, we are experiencing severe calamities, disasters, and crimes or tragedies that cause panic and fear among people. PASPAS is built to address this pressing issue by offering quick assistance during such stressfull moments. This system is created to lessen the stress and confusion often associated with seeking help in crises, particularly for individuals who may be feling panicked or unsure about where to turn for assistance. It effectively addresses commmon challenge of not knowing which emergency hotline to dial, streamlining their path to receiving the help they need without unnecessary delays.
@@ -11,7 +15,7 @@ PASPAS goes beyond just reporting emergencies; ut stimulates response procedures
 
 ---
 
-## II. Python Concepts, Libraries, and Features
+## II. Python Concepts, Libraries, and Features 🐍
 This project demonstrates the following Python concepts and libraries:
 
 1. **GUI with Tkinter:**
@@ -33,7 +37,7 @@ This project demonstrates the following Python concepts and libraries:
 
 ---
  
-## III. Sustainable Development Goal (SDG) Integration
+## III. Sustainable Development Goal (SDG) Integration 🏗️
 <div align="center"> <img src="https://github.com/user-attachments/assets/f4300762-550e-430b-92f3-7d9981bc29e7"> 
 
 ### SDG 11: Sustainable Cities and Communities </div>
@@ -53,13 +57,13 @@ The PASPAS system supports SDG 11, which aims to create sustainable and safe cit
  - A major challenge in emergencies is making sure everyone can access help, regardless of their background or tech skills. PASPAS is designed to be simple and user-friendly, allowing anyone to navigate it easily. This inclusive approach ensures that more people can request assistance during critical times, particularly in areas where emergency services might be harder to reach. By breaking down barriers, PASPAS empowers individuals to act quickly when they need help.
 ---
 
-## IV. Instructions for Running the Program
+## IV. Instructions for Running the Program 📌 
 ### Prerequisites:
 - **Python 3.x** installed on your system.
 - Required Python libraries (`tkinter`, `ttk` - these come pre-installed with Python).
 - Image files for icons and buttons located in `C:\Users\FINAL PROJECT IN ACP\images`.
 
-### Steps to Run:
+### Steps to Run: 💨
 1. Clone or download the project files.
 2. Ensure the image assets (`logo.png`, `paspas.png`, and  `red.png` ) are in the specified directory.
 3. Run the Python script:
