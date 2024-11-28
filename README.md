@@ -141,7 +141,7 @@ The PASPAS system supports SDG 11, which aims to create sustainable and safe cit
 
 ---
 
-## Explanation of Functions by their files
+## Explanation of Functions by their files📝
 ### *emergency response.py*
 Each `def` used in the code plays a specific role in the system. Here's a breakdown:
 
@@ -225,6 +225,6 @@ Each `def` used in the code plays a specific role in the system. Here's a breakd
 
 <div align= "center"> 
 
-***Paspas: Fast. Reliable. Life-Saving.***🚨🚓🚑🚒
+<i><b>Paspas: Fast. Reliable. Life-Saving.<b><i>🚨🚓🚑🚒
 
  </div>
