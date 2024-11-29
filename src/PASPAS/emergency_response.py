@@ -247,7 +247,7 @@ class EmergencyResponse:
         history_window.config(bg="black")
 
         # Create a table using Treeview
-        columns = ("user_id", "name", "emergency_type", "details", "location", "timestamp")
+        columns = ("emergency_id", "name", "emergency_type", "details", "location", "timestamp")
         tree = ttk.Treeview(history_window, columns=columns, show="headings", height=15)
         tree.pack(fill=BOTH, expand=True)
 
@@ -269,7 +269,7 @@ class EmergencyResponse:
                     font=("Arial", 10, "bold"))  # Optionally set font for heading
 
         # Set column headings
-        tree.heading("user_id", text="User_id", anchor="center")
+        tree.heading("emergency_id", text="Emergency_id", anchor="center")
         tree.heading("name", text="Name", anchor="center")
         tree.heading("emergency_type", text="Emergency Type", anchor="center")
         tree.heading("details", text="Additional Info", anchor="center")
@@ -277,7 +277,7 @@ class EmergencyResponse:
         tree.heading("timestamp", text="Reported Time", anchor="center")
 
         # Set column widths
-        tree.column("user_id", width=80, anchor="center")
+        tree.column("emergency_id", width=80, anchor="center")
         tree.column("name", width=100, anchor="center")
         tree.column("emergency_type", width=100, anchor="center")
         tree.column("details", width=150, anchor="center")
@@ -314,12 +314,12 @@ class EmergencyResponse:
             messagebox.showwarning("No Selection", "Please select an emergency request to cancel.")
             return
 
-        user_id = tree.item(selected_item, "values")[0]  # Get user_id from the selected row
+        emergency_id = tree.item(selected_item, "values")[0]  # Get user_id from the selected row
 
         # Confirm cancellation
-        if messagebox.askyesno("Cancel Request", f"Are you sure you want to cancel the request for user ID {user_id}?"):
+        if messagebox.askyesno("Cancel Request", f"Are you sure you want to cancel the request for user ID {emergency_id}?"):
             # Remove from database
-            self.db.remove_emergency_request(user_id)
+            self.db.remove_emergency_request(emergency_id)
             messagebox.showinfo("Request Cancelled", "The request has been successfully cancelled.")
 
             # Refresh the history table
@@ -332,10 +332,10 @@ class EmergencyResponse:
             messagebox.showwarning("No Selection", "Please select an emergency request to update.")
             return
 
-        user_id = tree.item(selected_item, "values")[0]  # Get user_id from the selected row
+        emergency_id = tree.item(selected_item, "values")[0]  # Get user_id from the selected row
 
         # Fetch current record details
-        current_details = self.db.fetch_user_details(user_id)
+        current_details = self.db.fetch_user_details(emergency_id)
 
         # Open a new window to update the details
         self.update_window = Toplevel(self.root)
@@ -362,10 +362,10 @@ class EmergencyResponse:
         button_frame = Frame(self.update_window)
         button_frame.grid(row=3, column=0, columnspan=2, pady=20)
 
-        Button(button_frame, text="Submit Update", command=lambda: self.submit_update(user_id, tree), width=15).pack(side=LEFT, padx=5)
+        Button(button_frame, text="Submit Update", command=lambda: self.submit_update(emergency_id, tree), width=15).pack(side=LEFT, padx=5)
         Button(button_frame, text="Cancel", command=self.update_window.destroy, width=15).pack(side=LEFT, padx=5)
 
-    def submit_update(self, user_id, tree):
+    def submit_update(self, emergency_id, tree):
         # Get updated details from the entry fields
         updated_name = self.name_entry.get().strip()
         updated_location = self.location_entry.get().strip()
@@ -376,7 +376,7 @@ class EmergencyResponse:
              messagebox.showwarning("Incomplete Information", "Name and location must be provided.")
              return
 
-        self.db.update_emergency_request(user_id, updated_name, updated_location, updated_additional_info)
+        self.db.update_emergency_request(emergency_id, updated_name, updated_location, updated_additional_info)
 
         # Update the treeview (refresh)
         self.refresh_history(tree)

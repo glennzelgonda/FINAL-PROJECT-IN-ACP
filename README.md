@@ -138,6 +138,7 @@ The PASPAS system supports SDG 11, which aims to create sustainable and safe cit
      - Contextual reminders or tips related to the selected emergency type are shown to guide users on staying safe until help arrives.
   - View History
      - This button allows users to see a detailed record of past emergency reports. It opens a new window displaying the user's name, type of emergency, additional details, location, and the time the emergency was reported.
+     - Users can cancel and update their emergency request by clicking their request in history button
 
 ---
 
@@ -232,7 +233,7 @@ Each `def` used in the code plays a specific role in the system. Here's a breakd
 2. Tracking the real-time location of the user for accurate emergency tracking.
 3. Implement SMS or email notifications for the user's emergency contacts and responders with the user's details and location.
 4. Create a separate dashboard for emergency responders to view real-time data, prioritize cases, and communicate with users directly.
-5. Add a sign-up/log-in 
+5. Prevent deletion of other users’ information in history.
 
 
 <div align= "center"> 
