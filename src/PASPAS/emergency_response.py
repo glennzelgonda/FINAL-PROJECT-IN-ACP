@@ -1,9 +1,8 @@
 from tkinter import *
-from tkinter import messagebox, ttk
+from tkinter import messagebox, ttk, simpledialog
 from database import Database
 
 class EmergencyResponse:
-
     def __init__(self, root):
         # Initialize the root window
         self.root = root
@@ -25,7 +24,7 @@ class EmergencyResponse:
         try:
             logo = PhotoImage(file=r'C:\Users\FINAL PROJECT IN ACP\images\paspas.png').subsample(5, 5)
             logo_label = Label(root, image=logo, background="#b4b9bf", bd=0)
-            logo_label.photo = logo
+            logo_label.photo = logo  
             logo_label.pack()
         except Exception as e:
             print(f"Logo not loaded: {e}")
@@ -239,62 +238,162 @@ class EmergencyResponse:
         messagebox.showinfo(f"{self.emergency_type} Reminder", reminders[self.emergency_type])
 
     def view_history(self):
-         # Create a new window for viewing history
-         history_window = Toplevel(self.root)
-         history_window.title("Emergency History")
-         history_window.geometry("820x350")
+        # Create a new window for viewing history
+        history_window = Toplevel(self.root)
+        history_window.title("Emergency History")
+        history_window.geometry("820x400")
 
-         # Set the background color of the window to black
-         history_window.config(bg="black")
+        # Set the background color of the window to black
+        history_window.config(bg="black")
 
-         # Create a table using Treeview
-         columns = ("user_id", "name", "emergency_type", "details", "location", "timestamp")
-         tree = ttk.Treeview(history_window, columns=columns, show="headings", height=15)
-         tree.pack(fill=BOTH, expand=True)
+        # Create a table using Treeview
+        columns = ("user_id", "name", "emergency_type", "details", "location", "timestamp")
+        tree = ttk.Treeview(history_window, columns=columns, show="headings", height=15)
+        tree.pack(fill=BOTH, expand=True)
 
-         # Create a style object for customization
-         style = ttk.Style()
+        # Create a style object for customization
+        style = ttk.Style()
+        style.theme_use("clam")
 
-         style.theme_use("clam")
-
-         # Configure Treeview background color and text color
-         style.configure("Treeview",
+        # Configure Treeview background color and text color
+        style.configure("Treeview",
                     background="#232323",   
                     foreground="black",   
                     fieldbackground="#232323",  
                     font=("Arial", 10)) 
 
-          # Configure the Treeview Heading
-         style.configure("Treeview.Heading",
+        # Configure the Treeview Heading
+        style.configure("Treeview.Heading",
                     background="#232323",  # Set the background of headings
                     foreground="pink",   # Set the text color of headings
                     font=("Arial", 10, "bold"))  # Optionally set font for heading
-         
-         # Set column headings
-         tree.heading("user_id", text="User_id", anchor = "center")
-         tree.heading("name", text="Name", anchor = "center")
-         tree.heading("emergency_type", text="Emergency Type", anchor = "center")
-         tree.heading("details", text="Additional Info", anchor = "center")
-         tree.heading("location", text="Location", anchor = "center")
-         tree.heading("timestamp", text="Reported Time", anchor = "center")
 
-         # Set column widths
-         tree.column("user_id", width=80, anchor = "center")
-         tree.column("name", width=100, anchor = "center")
-         tree.column("emergency_type", width=100, anchor = "center")
-         tree.column("details", width=150, anchor = "center")
-         tree.column("location", width=150, anchor = "center")
-         tree.column("timestamp", width=150, anchor = "center")
+        # Set column headings
+        tree.heading("user_id", text="User_id", anchor="center")
+        tree.heading("name", text="Name", anchor="center")
+        tree.heading("emergency_type", text="Emergency Type", anchor="center")
+        tree.heading("details", text="Additional Info", anchor="center")
+        tree.heading("location", text="Location", anchor="center")
+        tree.heading("timestamp", text="Reported Time", anchor="center")
 
-         # Set row colors (alternating gray and dark gray)
-         tree.tag_configure("gray", background="gray", foreground="black")
-         tree.tag_configure("darkgray", background="darkgray", foreground="black")
+        # Set column widths
+        tree.column("user_id", width=80, anchor="center")
+        tree.column("name", width=100, anchor="center")
+        tree.column("emergency_type", width=100, anchor="center")
+        tree.column("details", width=150, anchor="center")
+        tree.column("location", width=150, anchor="center")
+        tree.column("timestamp", width=150, anchor="center")
 
-         # Fetch data from the database
-         history_data = self.db.fetch_emergency_history()
+        # Set row colors (alternating gray and dark gray)
+        tree.tag_configure("gray", background="gray", foreground="black")
+        tree.tag_configure("darkgray", background="darkgray", foreground="black")
 
-         # Populate the Treeview with the data
-         for idx, record in enumerate(history_data):
-             # Alternate between gray and dark gray for rows
-             row_tag = "gray" if idx % 2 == 0 else "darkgray"
-             tree.insert("", "end", values=record, tags=(row_tag,))
+        # Fetch data from the database
+        history_data = self.db.fetch_emergency_history()
+
+        # Populate the Treeview with the data
+        for idx, record in enumerate(history_data):
+            # Alternate between gray and dark gray for rows
+            row_tag = "gray" if idx % 2 == 0 else "darkgray"
+            tree.insert("", "end", values=record, tags=(row_tag,))
+
+    # Create Cancel and Update buttons
+        button_frame = Frame(history_window, bg="black")
+        button_frame.pack(pady=10, fill=X)
+
+        cancel_button = Button(button_frame, text="Cancel Request", command=lambda: self.cancel_request(tree), bg="red", fg="white", width=15)
+        cancel_button.pack(side=LEFT, padx=10)
+
+        update_button = Button(button_frame, text="Update Request", command=lambda: self.update_request(tree), bg="orange", fg="white", width=15)
+        update_button.pack(side=RIGHT, padx=10)
+
+    def cancel_request(self, tree):
+        # Get selected item
+        selected_item = tree.selection()
+        if not selected_item:
+            messagebox.showwarning("No Selection", "Please select an emergency request to cancel.")
+            return
+
+        user_id = tree.item(selected_item, "values")[0]  # Get user_id from the selected row
+
+        # Confirm cancellation
+        if messagebox.askyesno("Cancel Request", f"Are you sure you want to cancel the request for user ID {user_id}?"):
+            # Remove from database
+            self.db.remove_emergency_request(user_id)
+            messagebox.showinfo("Request Cancelled", "The request has been successfully cancelled.")
+
+            # Refresh the history table
+            self.refresh_history(tree)
+
+    def update_request(self, tree):
+        # Get selected item
+        selected_item = tree.selection()
+        if not selected_item:
+            messagebox.showwarning("No Selection", "Please select an emergency request to update.")
+            return
+
+        user_id = tree.item(selected_item, "values")[0]  # Get user_id from the selected row
+
+        # Fetch current record details
+        current_details = self.db.fetch_user_details(user_id)
+
+        # Open a new window to update the details
+        self.update_window = Toplevel(self.root)
+        self.update_window.title("Update Emergency Details")
+        self.update_window.geometry("335x250")
+
+        # User input fields pre-filled with current values
+        Label(self.update_window, text="Name:").grid(row=0, column=0, padx=10, pady=5, sticky=E)
+        self.name_entry = Entry(self.update_window, width=30)
+        self.name_entry.insert(0, current_details[1])
+        self.name_entry.grid(row=0, column=1, padx=10, pady=5)
+
+        Label(self.update_window, text="Location:").grid(row=1, column=0, padx=10, pady=5, sticky=E)
+        self.location_entry = Entry(self.update_window, width=30)
+        self.location_entry.insert(0, current_details[3])
+        self.location_entry.grid(row=1, column=1, padx=10, pady=5)
+
+        Label(self.update_window, text="Additional Info:").grid(row=2, column=0, padx=10, pady=5, sticky=E)
+        self.additional_info_entry = Entry(self.update_window, width=30)
+        self.additional_info_entry.insert(0, current_details[4] if current_details[4] else "")
+        self.additional_info_entry.grid(row=2, column=1, padx=10, pady=5)
+
+        # Buttons for submitting the update
+        button_frame = Frame(self.update_window)
+        button_frame.grid(row=3, column=0, columnspan=2, pady=20)
+
+        Button(button_frame, text="Submit Update", command=lambda: self.submit_update(user_id, tree), width=15).pack(side=LEFT, padx=5)
+        Button(button_frame, text="Cancel", command=self.update_window.destroy, width=15).pack(side=LEFT, padx=5)
+
+    def submit_update(self, user_id, tree):
+        # Get updated details from the entry fields
+        updated_name = self.name_entry.get().strip()
+        updated_location = self.location_entry.get().strip()
+        updated_additional_info = self.additional_info_entry.get().strip()
+
+        # Validate and update the record in the database
+        if not updated_name or not updated_location:
+             messagebox.showwarning("Incomplete Information", "Name and location must be provided.")
+             return
+
+        self.db.update_emergency_request(user_id, updated_name, updated_location, updated_additional_info)
+
+        # Update the treeview (refresh)
+        self.refresh_history(tree)
+
+        # Close the update window after submitting
+        self.update_window.destroy()
+
+    def refresh_history(self, tree):
+        # Clear existing rows in the Treeview
+        tree.delete(*tree.get_children())
+
+        # Fetch updated data from the database
+        history_data = self.db.fetch_emergency_history()
+
+        # Populate the Treeview with the refreshed data
+        for idx, record in enumerate(history_data):
+            row_tag = "gray" if idx % 2 == 0 else "darkgray"
+            tree.insert("", "end", values=record, tags=(row_tag,))
+
+

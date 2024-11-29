@@ -210,6 +210,17 @@ Each `def` used in the code plays a specific role in the system. Here's a breakd
 ### 6. fetch_emergency_history Method:
 -  Fetches a complete list of emergency history by joining the Users and Emergencies tables. It retrieves the user's ID, name, emergency type, details, location, and the time the emergency was reported, sorted by the most recent reports.
 
+### 7. cancel_request(self,tree)
+- Allows the user to cancel an existing emergency request from the history table. It first checks if a request is selected, then asks for confirmation before removing the selected request from the database. After cancellation, the history table is refreshed.
+
+### 8. update_request(self,tree)
+- Enables the user to update the details of a selected emergency request. It opens a new window with pre-filled data, allowing the user to edit the name, location, and additional information. Once updated, the details are saved to the database, and the history table is refreshed.
+
+### 9. submit_update(self,tree)
+- This function is called when the user submits updated emergency details. It validates the input, updates the database with the new information, and refreshes the emergency history displayed in the application.
+
+### 10. refresh_history(self,tree)
+- Refreshes the emergency history table by clearing existing rows and re-fetching the updated data from the database. It ensures the table displays the most current information.
 ---
 ### **main.py**
 - This file launches the Emergency Assistance System, acting as the starting point for the program. It creates the main window, initializes the GUI, and runs the application event loop.
@@ -218,9 +229,10 @@ Each `def` used in the code plays a specific role in the system. Here's a breakd
 
 **Future Enhancement**✨
 1. Implement real-time responder tracking via external APIs.
-2. Tracking the real-timr location of the user for accurate emergency tracking.
+2. Tracking the real-time location of the user for accurate emergency tracking.
 3. Implement SMS or email notifications for the user's emergency contacts and responders with the user's details and location.
 4. Create a separate dashboard for emergency responders to view real-time data, prioritize cases, and communicate with users directly.
+5. Add a sign-up/log-in 
 
 
 <div align= "center"> 
