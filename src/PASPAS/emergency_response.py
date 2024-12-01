@@ -241,13 +241,13 @@ class EmergencyResponse:
         # Create a new window for viewing history
         history_window = Toplevel(self.root)
         history_window.title("Emergency History")
-        history_window.geometry("820x400")
+        history_window.geometry("9000x500")
 
         # Set the background color of the window to black
         history_window.config(bg="black")
 
         # Create a table using Treeview
-        columns = ("emergency_id", "name", "emergency_type", "details", "location", "timestamp")
+        columns = ("emergency_id", "name", "emergency_type", "details", "location", "timestamp", "responder_name")
         tree = ttk.Treeview(history_window, columns=columns, show="headings", height=15)
         tree.pack(fill=BOTH, expand=True)
 
@@ -275,6 +275,7 @@ class EmergencyResponse:
         tree.heading("details", text="Additional Info", anchor="center")
         tree.heading("location", text="Location", anchor="center")
         tree.heading("timestamp", text="Reported Time", anchor="center")
+        tree.heading("responder_name", text="Responder", anchor="center")
 
         # Set column widths
         tree.column("emergency_id", width=80, anchor="center")
@@ -283,6 +284,7 @@ class EmergencyResponse:
         tree.column("details", width=150, anchor="center")
         tree.column("location", width=150, anchor="center")
         tree.column("timestamp", width=150, anchor="center")
+        tree.column("responder_name", width=150, anchor="center")
 
         # Set row colors (alternating gray and dark gray)
         tree.tag_configure("gray", background="gray", foreground="black")
@@ -314,12 +316,12 @@ class EmergencyResponse:
             messagebox.showwarning("No Selection", "Please select an emergency request to cancel.")
             return
 
-        emergency_id = tree.item(selected_item, "values")[0]  # Get user_id from the selected row
+        name = tree.item(selected_item, "values")[1] 
 
         # Confirm cancellation
-        if messagebox.askyesno("Cancel Request", f"Are you sure you want to cancel the request for user ID {emergency_id}?"):
+        if messagebox.askyesno("Cancel Request", f"Are you sure you want to cancel the request for  {name}?"):
             # Remove from database
-            self.db.remove_emergency_request(emergency_id)
+            self.db.remove_emergency_request(name)
             messagebox.showinfo("Request Cancelled", "The request has been successfully cancelled.")
 
             # Refresh the history table
@@ -395,5 +397,3 @@ class EmergencyResponse:
         for idx, record in enumerate(history_data):
             row_tag = "gray" if idx % 2 == 0 else "darkgray"
             tree.insert("", "end", values=record, tags=(row_tag,))
-
-
