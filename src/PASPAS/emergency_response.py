@@ -243,7 +243,6 @@ class EmergencyResponse:
         history_window.title("Emergency History")
         history_window.geometry("9000x500")
 
-        # Set the background color of the window to black
         history_window.config(bg="black")
 
         # Create a table using Treeview
@@ -316,12 +315,14 @@ class EmergencyResponse:
             messagebox.showwarning("No Selection", "Please select an emergency request to cancel.")
             return
 
-        name = tree.item(selected_item, "values")[1] 
+        values = tree.item(selected_item, "values")
+        emergency_id = values[0] 
+        name = values[1] 
 
         # Confirm cancellation
         if messagebox.askyesno("Cancel Request", f"Are you sure you want to cancel the request for  {name}?"):
             # Remove from database
-            self.db.remove_emergency_request(name)
+            self.db.remove_emergency_request(emergency_id, name)
             messagebox.showinfo("Request Cancelled", "The request has been successfully cancelled.")
 
             # Refresh the history table
@@ -334,7 +335,7 @@ class EmergencyResponse:
             messagebox.showwarning("No Selection", "Please select an emergency request to update.")
             return
 
-        emergency_id = tree.item(selected_item, "values")[0]  # Get user_id from the selected row
+        emergency_id = tree.item(selected_item, "values")[0] 
 
         # Fetch current record details
         current_details = self.db.fetch_user_details(emergency_id)

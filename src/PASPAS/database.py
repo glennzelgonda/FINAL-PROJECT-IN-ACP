@@ -22,7 +22,7 @@ class Database:
         # Create Emergencies table
         self.cursor.execute("""
             CREATE TABLE IF NOT EXISTS Emergencies (
-                emergency_type TEXT NOT NULL,
+                emergency_type TEXT CHECK(emergency_type IN ('Fire', 'Flood', 'Earthquake', 'Medical', 'Crime')) NOT NULL,
                 details TEXT,
                 reported_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 emergency_id INTEGER,
@@ -30,10 +30,11 @@ class Database:
             )
         """)
 
+
         # Create Responder table
         self.cursor.execute("""
             CREATE TABLE IF NOT EXISTS Responder (
-                responder_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                responder_id INTEGER PRIMARY KEY,
                 name TEXT NOT NULL,
                 contact TEXT NOT NULL,
                 responder_type TEXT NOT NULL
@@ -41,6 +42,7 @@ class Database:
         """)
         self.conn.commit()
 
+    # Method to insert default responders into the database
     def insert_default_responders(self):
         """Insert default responder data if the Responder table is empty."""
         self.cursor.execute("SELECT COUNT(*) FROM Responder")
@@ -58,17 +60,21 @@ class Database:
             """, responders)
             self.conn.commit()
 
+
+    # Method to save a user to the database
     def save_user(self, name, contact, location, emergency_type):
         self.cursor.execute("INSERT INTO Users (name, contact, location, selected_emergency) VALUES (?, ?, ?, ?)", 
                             (name, contact, location, emergency_type))
         self.conn.commit()
         return self.cursor.lastrowid  # This will return emergency_id
-
+    
+    # Method to save an emergency to the database
     def save_emergency(self, emergency_type, details, emergency_id):
         self.cursor.execute("INSERT INTO Emergencies (emergency_type, details, emergency_id) VALUES (?, ?, ?)", 
                             (emergency_type, details, emergency_id))
         self.conn.commit()
-
+    
+    # Method to fetch the emergency history from the database
     def fetch_emergency_history(self):
         self.cursor.execute("""
             SELECT u.emergency_id, u.name, e.emergency_type, e.details, u.location, e.reported_time, r.name AS responder_name
@@ -78,22 +84,27 @@ class Database:
             ORDER BY e.reported_time DESC
         """)
         return self.cursor.fetchall()
-
-    def remove_emergency_request(self, emergency_id):
+    
+    # Method to remove an emergency request from the database
+    def remove_emergency_request(self, emergency_id, name):
         self.cursor.execute("DELETE FROM Emergencies WHERE emergency_id = ?", (emergency_id,))
-        self.cursor.execute("DELETE FROM Users WHERE emergency_id = ?", (emergency_id,))
+        self.cursor.execute("DELETE FROM Users WHERE name = ?", (name,))
         self.conn.commit()
-
+    
+    # Method to update an emergency request in the database
     def update_emergency_request(self, emergency_id, name, location, additional_info):
+        # Update user details
         self.cursor.execute("""
             UPDATE Users SET name = ?, location = ? WHERE emergency_id = ?
         """, (name, location, emergency_id))
-
+        
+        # Update emergency details
         self.cursor.execute("""
             UPDATE Emergencies SET details = ? WHERE emergency_id = ?
         """, (additional_info, emergency_id))
         self.conn.commit()
 
+    # Method to fetch user details from the database
     def fetch_user_details(self, emergency_id):
         self.cursor.execute("""
             SELECT u.emergency_id, u.name, u.contact, u.location, e.details
